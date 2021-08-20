@@ -14,5 +14,6 @@ export default {
    height: 35px;
    background-color: #bd9834;
    border-radius: 5px;
+   border-top: 1px solid #80692c;
  }
 </style>
