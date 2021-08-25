@@ -1,58 +1,61 @@
 <template>
   <div>
-    <button @click="minusIng" v-if="count>0">-</button>
-    <button class="disBtn" disabled="disabled" v-else></button>
-    <span>{{ingred.name}}</span>
-    <button @click="addIng" v-if="count<2">+</button>
-    <button class="disBtn" disabled="disabled" v-else></button>
+    <button 
+      @click="minusIngredient" 
+      v-if="ingredient.count > 0"
+    > - </button>
+    <button class="disableBtn" disabled="disabled" v-else></button>
+
+    <span>{{ ingredient.name }} ( {{ ingredient.price }} )</span>
+
+    <button 
+      @click="plusIngredient"
+      v-if="ingredient.count < 2"
+    > + </button>
+    <button class="disableBtn" disabled="disabled" v-else></button>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      count: 0
-    }
-  },
   props: {
-    ingred: {
+    ingredient: {
       type: Object,
       required: true
     }
   },
   methods: {
-    addIng() {
+    plusIngredient() {
       this.count += 1
-      this.$emit('add', this.ingred.name)
+      this.$emit('plusIngredient', this.ingredient.name)
     },
-    minusIng() {
+    minusIngredient() {
       this.count -= 1
-      this.$emit('minus', this.ingred.name)
-      
+      this.$emit('minusIngredient', this.ingredient.name)      
     }
   }
 }
 </script>
   
 <style scoped>
-  div {
-    padding: 10px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  button {
-    font-size: 25px;
-    width: 50px;
-    height: 50px;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #f07929;
-  }
-  .disBtn {
-    cursor:not-allowed;
-  }
+div {
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  font-size: 25px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #f07929;
+}
+.disableBtn {
+  cursor: not-allowed;
+}
 </style>
+  
